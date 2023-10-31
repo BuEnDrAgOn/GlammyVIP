@@ -9,7 +9,7 @@
             </thead>
             <tbody class="text-center">
                 <tr v-for="appointment in appointments" :key="appointment.id">
-                    <td>{{treatment[appointment.id_service].treatment}}</td>
+                    <td>{{treatment[appointment.id_service - 1].treatment}}</td>
                     <td>{{momentFormat(appointment.date)}} | 10:00pm</td>
                     <td>${{treatment[appointment.id].price}}</td>
                 </tr>
