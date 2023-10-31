@@ -37,7 +37,6 @@ export default {
         return{
             treatment: [],
             appointments: [],
-            services: null,
         }
     },
 
@@ -64,10 +63,7 @@ export default {
                 .getServices()
                 .then(response => {
                     let {data} = response
-                    this.services = data
-                    this.services.map((service, i) => {
-                        this.treatment.push(service)
-                    })
+                    this.treatment = data
                 })
             })
         }

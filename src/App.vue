@@ -130,6 +130,12 @@ a{
 
 /* Generales */
 
+#app{
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+}
+
 body{
     line-height: normal !important;
 }
@@ -194,11 +200,20 @@ body{
 
 /* Cabecera */
 #header{
+    display: flex;
+    flex-grow: 1;
     width: 100%;
     height: 70px;
     background-color: black;
     color: white;
     font-family: "BebasNeue";
+}
+
+
+#header > div  nav{
+    display: flex;
+    justify-content : flex-end;
+    flex-grow: 0;
 }
 
 #logo{
