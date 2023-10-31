@@ -9,9 +9,9 @@
             </thead>
             <tbody class="text-center">
                 <tr v-for="appointment in appointments" :key="appointment.id">
-                    <td>{{treatment[appointment.id_service - 1].treatment}}</td>
-                    <td>{{momentFormat(appointment.date)}} | 10:00pm</td>
-                    <td>${{treatment[appointment.id_service - 1].price}}</td>
+                    <td>{{appointment.treatment}}</td>
+                    <td>{{appointment.date}}</td>
+                    <td>{{appointment.payment}}</td>
                 </tr>
             </tbody>
         </table>
@@ -20,7 +20,7 @@
                 <th class="table-dark w-50">
                     Precio total
                 </th>
-                <th class="pagototal">$300</th>
+                <th class="pagototal">{{ this.total }}</th>
             </thead>
         </table>
     </section>
@@ -35,43 +35,31 @@ export default {
 
     data(){
         return{
-            treatment: [],
             appointments: [],
+            total: 0
+
         }
     },
 
     methods:{
         momentFormat(e){
             moment(e).format('YYYY-MM-DD')
-            console.log(e)
         },
 
         loadAppointments(){
             new Promise ((response, reject) =>{
-                appointmentService.getAppointmentByID({params: localStorage.getItem(2)})
+                appointmentService.getAppointmentByUserId({params: localStorage.getItem(2)})
                 .then(response => {
                     let {data} = response
                     this.appointments = data
-                    console.log()
+                    this.appointments.map((appointment) => {this.total = this.total + appointment.payment})
                 })
             })
         },
-
-        loadTreatment(){
-            new Promise ((response, reject) => {
-                serviceService
-                .getServices()
-                .then(response => {
-                    let {data} = response
-                    this.treatment = data
-                })
-            })
-        }
     },
 
     created(){
         this.loadAppointments()
-        this.loadTreatment()
     }
 
 }
