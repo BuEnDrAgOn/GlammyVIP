@@ -1,0 +1,6 @@
+version: '3'
+services:
+  volume:
+    image: database-frontend
+    ports:
+      - '3900:80'
