@@ -6,6 +6,7 @@ import LoginView from '../views/LoginView.vue'
 import IndexView from '../views/IndexView.vue'
 import AgendasView from '../views/AgendasView.vue'
 import CitasView from '../views/CitasView.vue'
+import ServiciosView from '../views/ServiciosView.vue'
 
 Vue.use(VueRouter)
 
@@ -40,7 +41,12 @@ const routes = [
     name: 'Citas',
     component: CitasView
   },
-  
+
+  {
+    path: '/servicios',
+    name: 'Servicios',
+    component: ServiciosView
+  }
 ]
 
 const router = new VueRouter({

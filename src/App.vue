@@ -13,7 +13,7 @@
                         <a href="index">INICIO</a>
                     </li>
                     <li>
-                        <a href="services">SERVICIOS</a>
+                        <a href="Servicios">SERVICIOS</a>
                     </li>
                     <li>
                         <a @click="citasPage()">CITAS</a>

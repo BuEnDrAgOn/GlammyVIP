@@ -50,7 +50,7 @@ export default {
         userService.getUserByPhone({params: this.user})
         .then((response =>{
           this.user.password == response.data[0].password ? 
-          (localStorage.setItem(1, response.data[0].names),
+          (localStorage.setItem(1, response.data[0].names + ' ' + response.data[0].fathers_lastname),
            localStorage.setItem(2, response.data[0].id),
            this.page.message = null, this.$router.push({
             name: "Index",

@@ -44,6 +44,7 @@ export default {
     methods:{
         momentFormat(e){
             moment(e).format('YYYY-MM-DD')
+            console.log(e)
         },
 
         loadAppointments(){
