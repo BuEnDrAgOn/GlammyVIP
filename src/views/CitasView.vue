@@ -11,7 +11,7 @@
                 <tr v-for="appointment in appointments" :key="appointment.id">
                     <td>{{treatment[appointment.id_service - 1].treatment}}</td>
                     <td>{{momentFormat(appointment.date)}} | 10:00pm</td>
-                    <td>${{treatment[appointment.id].price}}</td>
+                    <td>${{treatment[appointment.id_service - 1].price}}</td>
                 </tr>
             </tbody>
         </table>
