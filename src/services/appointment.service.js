@@ -4,7 +4,7 @@ export const appointmentService = {
     getAppointment: async ({params}) => {
         return BereApi.get(`/appointment`,  {params} )
     },
-    getAppointmentByID: async ({params}) => {
+    getAppointmentByUserId: async ({params}) => {
         return BereApi.get(`/appointment/` + params)
     },
     postAppointment: async ({params}) => {
