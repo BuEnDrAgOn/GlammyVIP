@@ -936,6 +936,14 @@ aside h3:first-child{
     color: white;
 }
 
+#citas{
+    animation: fadeInDown 1.2s;
+}
+
+#citas-precio{
+    animation: displayList 1.2s;
+}
+
 #citas, #citas-precio{
     width: 70%;
 }

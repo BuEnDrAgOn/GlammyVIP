@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="wrap">
+    <section class="wrap index-wrap">
         <section id="info">
             <!-- Inicio Banner -->
             <div id="banner" class="text-center">
@@ -52,4 +52,9 @@ export default {
 
 <style>
 @import url(@/assets/css/font-awesome.min.css);
+
+.index-wrap{
+    animation: displayList 1.2s;
+}
+
 </style>
