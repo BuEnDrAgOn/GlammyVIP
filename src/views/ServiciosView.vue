@@ -225,6 +225,7 @@ export default {
     flex-flow: column;
     flex-grow: 1;
     margin: 20px 0;
+    animation: fadeInDown 1.2s;
 }
 
 .elemento {
@@ -235,6 +236,7 @@ export default {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+       border-radius: 0.3rem;
     
 }
 
@@ -272,6 +274,7 @@ export default {
     padding: 1rem;
     margin-top: 10px;
     transition: all 0.3s;
+    border-radius: 0.3rem;
 }
 
 .oculto:hover{
