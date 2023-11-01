@@ -2,7 +2,7 @@
       <div class="wrap-content">
         <section class="serv-container" v-for="service in services" :key="service.id">
             <div class="contenedor" @click="display(service.service), serviceBackground(service.service)">
-                <div class="elemento background-pestañas" :id="service.service">
+                <div class="elemento background-pestañas" :id="service.service" :style="heroimage">
                     <h2 class="h2-service">{{service.service}}</h2>
                 </div>
                 <transition-group name="show-items">
@@ -30,7 +30,7 @@ export default {
             services:[],
 
             setClass: "show-items-leave-active",
-            height: "auto"
+            height: this.heroimage()
 
         }
     },
@@ -38,6 +38,7 @@ export default {
     methods:{
         display(service){
             let element = document.querySelectorAll('.'+service)
+            console.log(this.height)
             element.forEach((hiddenElement, index) => {
                 setTimeout(() => {
                     hiddenElement.classList.toggle('show-items-leave-active');
@@ -62,8 +63,8 @@ export default {
         },
 
         serviceBackground(service){
-            let element = document.getElementById(service)
-            element.style.background = `url(@/assets/img/serv-${service})`
+            // let element = document.getElementById(service)
+            // element.style.background = `url(@/assets/img/serv-${service})`
 
         },
 
@@ -103,16 +104,17 @@ export default {
             new Promise((response, reject) => {
 
             })
+        },
+        heroimage() {
+            return {
+            backgroundimage: `url${require('@/assets/img/serv-Manicure.jpg')}`
+            };
         }
 
     },
 
-    computed:{
-        autoHeight(){
-            let rem = this.treatments.length * 3.8 + 11
-            this.height = `${rem}rem`
-            return this.height
-        }
+    computed: {
+        
     },
 
     created(){
@@ -228,7 +230,7 @@ export default {
 .elemento {
     width: 100%;
     height: 100px;
-    background-color: bisque;
+    background-color: #D11AB0;
     display: flex;
     justify-content: center;
     align-items: center;
