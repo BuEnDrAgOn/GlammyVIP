@@ -3,15 +3,21 @@
      <section id="wrap-citas">
         <table id="citas" class="table table-bordered table-hover mt-3">
             <thead class="table-head table-dark text-center">
+                <th v-if="admin">Cliente</th>
                 <th>Tratamiento</th>
                 <th>Fecha y hora</th>
                 <th>Precio</th>
+                <th v-if="admin">Celular</th>
+                <th v-if="admin">Dirección</th>
             </thead>
             <tbody class="text-center">
                 <tr v-for="appointment in appointments" :key="appointment.id">
+                    <td v-if="admin">{{appointment.names + ' ' + appointment.fathers_lastname + ' ' + appointment.mothers_lastname}}</td>
                     <td>{{appointment.treatment}}</td>
                     <td>{{appointment.date}}</td>
                     <td>{{appointment.payment}}</td>
+                    <td v-if="admin">{{appointment.phone}}</td>
+                    <td v-if="admin">{{appointment.direction}}</td>
                 </tr>
             </tbody>
         </table>
@@ -35,7 +41,8 @@ export default {
     data(){
         return{
             appointments: [],
-            total: 0
+            total: 0,
+            admin: localStorage.getItem("admin")
 
         }
     },
@@ -43,12 +50,29 @@ export default {
     methods:{
         loadAppointments(){
             new Promise ((response, reject) =>{
-                appointmentService.getAppointmentByUserId({params: localStorage.getItem(2)})
-                .then(response => {
-                    let {data} = response
-                    this.appointments = data
-                    this.appointments.map((appointment) => {this.total = this.total + appointment.payment})
-                })
+                if(this.admin){
+                    appointmentService.getAppointmentAdmin()
+                    .then(response => {
+                        let {data} = response
+                        this.appointments = data
+                        this.appointments.map((appointment) => {
+                            this.total = this.total + appointment.payment
+                            appointment.mothers_lastname == null || 'null' ?
+                            appointment.mothers_lastname = '' : null
+                            appointment.direction == null || 'null' ?
+                            appointment.direction = '[No tiene dirección]' : null
+                        })
+                        console.log(this.appointments)
+                    })
+                }else{
+                    appointmentService.getAppointmentByUserId({params: localStorage.getItem(2)})
+                    .then(response => {
+                        let {data} = response
+                        this.appointments = data
+                        console.log(data)
+                        this.appointments.map((appointment) => {this.total = this.total + appointment.payment})
+                    })
+                }
             })
         },
     },

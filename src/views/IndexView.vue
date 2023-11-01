@@ -11,7 +11,7 @@
             <div id="cards">
 
                 <div class="card">
-                    <a href="agendas">
+                    <a href="Servicios">
                         <i class="fa fa-handshake-o icon"></i>
                         <h2 class="category">Servicios</h2>
                         <p class="description">

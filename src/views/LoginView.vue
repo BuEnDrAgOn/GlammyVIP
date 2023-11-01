@@ -15,7 +15,7 @@
             <label class="error" v-if="(page.message!=null)">{{this.page.message}}</label>
             <input class="controls" v-model="user.phone" type="number" name="telefono" id="telefono" placeholder="Ingrese su Teléfono" required autofocus>
             <!-- <span class="validity"></span> -->
-            <input class="controls" v-model="user.password" type="password" name="contraseña" id="contraseña" placeholder="Ingrese su Contraseña">
+            <input class="controls" v-model="user.password" type="password" name="contraseña" id="contraseña" placeholder="Ingrese su Contraseña" @keydown.enter="loginUser">
             <input class="botons" type="submit" value="Iniciar Sesión" @click="loginUser">
             <p>¿No tienes Cuenta? <a href="register">¡¡Registrate!!</a></p>
           </section>
@@ -49,11 +49,16 @@ export default {
         userService.getUserByPhone({params: this.user})
         .then((response =>{
           this.user.password == response.data[0].password ? 
-          (localStorage.setItem(1, response.data[0].names + ' ' + response.data[0].fathers_lastname),
+          (localStorage.setItem(1, response.data[0].names),
            localStorage.setItem(2, response.data[0].id),
+           localStorage.setItem(3, response.data[0].fathers_lastname),
+           localStorage.setItem(4, response.data[0].mothers_lastname),
+           localStorage.setItem(5, response.data[0].direction),
+           response.data[0].admin == true ? 
+            localStorage.setItem("admin", response.data[0].admin) : null,
            this.page.message = null, this.$router.push({
             name: "Index",
-            params: {user: localStorage.getItem(1), location: location.replace("index")}
+            params: {user: response.data[0], location: location.replace("index")}
            }))
           : this.page.message = "Usuario o contraseña incorrectos"
         }))

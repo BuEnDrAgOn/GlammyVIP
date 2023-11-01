@@ -7,6 +7,9 @@ export const appointmentService = {
     getAppointmentByUserId: async ({params}) => {
         return BereApi.get(`/appointment/` + params)
     },
+    getAppointmentAdmin: async () => {
+        return BereApi.get(`/appointment/admin/admin`)
+    },
     postAppointment: async ({params}) => {
         return BereApi.post(`/appointment/create`, params)
     },

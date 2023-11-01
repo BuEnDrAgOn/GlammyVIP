@@ -15,6 +15,7 @@ export const userService = {
         return BereApi.post(`/users/create`, params)
     },
     patchUser: async ({params}) => {
-        return BereApi.patch('/users/' + params.userID , params)
+        console.log(params)
+        return BereApi.patch('/users/update/' + params.id , params)
     },
 }

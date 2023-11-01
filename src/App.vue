@@ -1,8 +1,8 @@
 <template>
   <div id="app" >
     <header id="header">
-        <div class="wrap">
-            <div id="logo">
+        <div class="wrap" >
+            <div id="logo" @click="accountPage()">
                 <span class="gear">S</span>
                 <h3>Cuenta</h3>
             </div>
@@ -19,7 +19,7 @@
                         <a @click="citasPage()">CITAS</a>
                     </li>
                     <li>
-                        <a @click="loginPage">{{this.user.name}}</a>
+                        <a @click="loginPage" :class="admin()">{{this.user.name}}</a>
                     </li>
                 </ul>
             </nav>
@@ -61,6 +61,16 @@ export default {
         }
     },
     methods:{
+        admin(){
+            if(localStorage.getItem("admin")){
+                return "admin"
+            }
+        },
+
+        accountPage(){
+            this.$router.push({name:'Cuenta'})
+        },
+
         loginPage(){
             this.$router.push({
                 name:"Login",
@@ -315,9 +325,18 @@ body{
     text-decoration: none;
     transition: all 200ms;
 }
+
+#menu ul li a.admin{
+    color: #2ca0ca;
+}
+
 #menu ul li a:hover{
     color: #db57c3;
     transform: scale(1.2, 1.2);
+}
+
+#menu ul li a.admin:hover{
+    color: #3eb8e5;
 }
 
 /* Banner */
@@ -946,10 +965,6 @@ aside h3:first-child{
 
 #citas, #citas-precio{
     width: 70%;
-}
-
-#citas th, #citas td{
-    width: 33%;
 }
 
 #wrap-citas{

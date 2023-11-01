@@ -1,28 +1,28 @@
 <template>
-    <div class="wrap-content">
+    <div class="wrap-content animationList">
         <section class="modificar-container">
             <div class="contenedor-flex">
                 <div class="input-column">
                     Nombre
-                    <input type="text" v-model="user.name">
+                    <input type="text" v-model="fromNameDefault" >
                 </div>
                 <div class="input-column">
                     Apellido Paterno:
-                    <input type="text" v-model="user.fathers_name">
+                    <input type="text" v-model="fromFLastname">
                 </div>
                 <div class="input-column">
                     Apellido Materno:
-                    <input type="text" v-model="user.mothers_name">
+                    <input type="text" v-model="fromMLastname">
                 </div>
             </div>
 
             <div class="input-column direccion">
                 Direccion
-                <input type="text" v-model="user.direction">
+                <input type="text" v-model="fromDirection" placeholder="Ingrese la dirección proporcionada por googlemaps">
             </div>
             
             
-            <button class="btn-modificar" @click="updateUser()">Modificar</button>
+            <button class="btn-modificar" @click="updateUser()">Actualizar</button>
 
         </section>
     </div>
@@ -35,12 +35,18 @@ export default {
     data(){
         return {
             user:{},
+            autoUser:{
+                name: localStorage.getItem(1),
+                fathers_lastname: localStorage.getItem(3),
+                mothers_lastname: localStorage.getItem(4),
+                direction: localStorage.getItem(5)
+            }
         }
     },
 
     methods:{
-        show(){
-            console.log(this.user.fathers_name)
+        reloadPage(){
+            location.reload()
         },
 
         loadUser(){
@@ -48,17 +54,70 @@ export default {
                 userService.getUserByID({params: localStorage.getItem(2)})
                 .then(response =>{
                     let {data} = response
-                    this.user = data
-                    console.log(this.user)
+                    this.user = data[0]
                 })
             })
         },
         updateUser(){
+            this.user.names = this.autoUser.name
+            this.user.fathers_lastname = this.autoUser.fathers_lastname
+            this.user.mothers_lastname = this.autoUser.mothers_lastname
+            this.user.direction = this.autoUser.direction
+
             new Promise((response, rej) =>{
                 userService.patchUser({params: this.user})
+                localStorage.setItem(1, this.user.names)
+                localStorage.setItem(3, this.user.fathers_lastname)
+                localStorage.setItem(4, this.user.mothers_lastname)
+                localStorage.setItem(5, this.user.direction)
+                this.reloadPage()
             })
         }
     },
+
+    computed:{
+        fromNameDefault:{
+            get(){
+                return this.autoUser.name
+            },
+            set(name){
+                return this.autoUser.name = name
+            }
+        },
+        fromFLastname:{
+            get(){
+                return this.autoUser.fathers_lastname
+            },
+            set(lastname){
+                return this.autoUser.fathers_lastname = lastname
+            }
+        },
+        fromMLastname:{
+            get(){
+                if(this.autoUser.mothers_lastname == 'null' || this.autoUser.mothers_lastname == ''){
+                    return ''
+                }else{
+                    return this.autoUser.mothers_lastname
+                }
+            },
+            set(lastname){
+                return this.autoUser.mothers_lastname = lastname
+            }
+        },
+        fromDirection:{
+            get(){
+                if(this.autoUser.direction == 'null' || this.autoUser.direction == ''){
+                    return ''
+                }else{
+                    return this.autoUser.direction
+                }
+            },
+            set(address){
+                return this.autoUser.direction = address 
+            }
+        },
+    },
+
     created(){
         this.loadUser()
     }
@@ -67,6 +126,10 @@ export default {
 </script>
 
 <style>
+.animationList{
+    animation: displayList 1.2s;
+}
+
 .wrap-content{
     display: flex;
     flex-flow: wrap column;
