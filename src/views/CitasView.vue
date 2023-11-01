@@ -29,7 +29,6 @@
 
 <script>
 import {  appointmentService, serviceService } from '@/services/index'
-import moment from 'moment'
 
 export default {
 
@@ -42,10 +41,6 @@ export default {
     },
 
     methods:{
-        momentFormat(e){
-            moment(e).format('YYYY-MM-DD')
-        },
-
         loadAppointments(){
             new Promise ((response, reject) =>{
                 appointmentService.getAppointmentByUserId({params: localStorage.getItem(2)})

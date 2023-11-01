@@ -7,6 +7,7 @@ import IndexView from '../views/IndexView.vue'
 import AgendasView from '../views/AgendasView.vue'
 import CitasView from '../views/CitasView.vue'
 import ServiciosView from '../views/ServiciosView.vue'
+import CuentaView from '../views/CuentaView.vue'
 
 Vue.use(VueRouter)
 
@@ -46,6 +47,11 @@ const routes = [
     path: '/servicios',
     name: 'Servicios',
     component: ServiciosView
+  },
+  {
+    path: '/cuenta',
+    name:'Cuenta',
+    component: CuentaView
   }
 ]
 

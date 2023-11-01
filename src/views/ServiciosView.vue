@@ -6,7 +6,7 @@
                     <h2 class="h2-service">{{service.service}}</h2>
                 </div>
                 <transition-group name="show-items">
-                    <div class="oculto"  :class="service.service + ' ' + setClass" v-for="treatment in treatments" :key="treatment.id">{{treatment.treatment}}</div>
+                    <div class="oculto"  :class="service.service + ' ' + setClass" v-for="treatment in treatments" :key="treatment.id" @click="redirection()">{{treatment.treatment}}</div>
                 </transition-group>
             </div> 
         </section>
@@ -53,6 +53,12 @@ export default {
                     )
                 }, (index + 1) * 100)
             });
+        },
+
+        redirection(){
+            this.$router.push({
+                name: 'Agendas',
+            })
         },
 
         serviceBackground(service){
