@@ -1,8 +1,8 @@
 <template>
       <div class="wrap-content">
         <section class="serv-container" v-for="service in services" :key="service.id">
-            <div class="contenedor" @click="display(service.service)">
-                <div class="elemento background-pestañas">
+            <div class="contenedor" @click="display(service.service), serviceBackground(service.service)">
+                <div class="elemento background-pestañas" :id="service.service">
                     <h2 class="h2-service">{{service.service}}</h2>
                 </div>
                 <transition-group name="show-items">
@@ -53,6 +53,12 @@ export default {
                     )
                 }, (index + 1) * 100)
             });
+        },
+
+        serviceBackground(service){
+            let element = document.getElementById(service)
+            element.style.background = `url(@/assets/img/serv-${service})`
+
         },
 
         loadServices(){
@@ -225,7 +231,6 @@ export default {
 }
 
 .background-pestañas{
-    background-image: url("@/assets/img/serv-pestañas.jpg");
     background-size: cover;
     background-position-x: 0px ;
     background-position-y: 60% ;
@@ -234,7 +239,6 @@ export default {
 
 
 .background-cabello{
-    background-image: url("@/assets/img/serv-cabello.jpg");
     background-size: cover;
     background-position-x: 0px ;
     background-position-y: 60% ;
@@ -242,7 +246,6 @@ export default {
 }
 
 .background-uñas{
-    background-image: url("@/assets/img/serv-uñas.jpg");
     background-size: cover;
     background-position-x: 0px ;
     background-position-y: 19% ;

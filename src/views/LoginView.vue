@@ -25,7 +25,6 @@
 
 <script>
 import { userService } from "@/services/index"
-import IndexViewVue from './IndexView.vue'
 
 export default {
 
