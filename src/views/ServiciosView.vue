@@ -86,13 +86,6 @@ export default {
                 return false;
             })
         },
-
-        loadTreatments(){
-            new Promise((response, reject) => {
-
-            })
-        }
-
     },
 
     computed:{
