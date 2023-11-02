@@ -2,12 +2,12 @@
     <div class="wrap-content">
       <section class="serv-container" v-for="service in services" :key="service.id">
           <div class="contenedor" @click="display(service.service), serviceBackground(service.service)">
-              <div class="elemento background-pestañas" :id="service.service" :style="heroimage">
+              <div class="elemento background-pestañas" :id="service.service">
                   <h2 class="h2-service">{{service.service}}</h2>
               </div>
               <transition-group name="show-items">
                   <!-- <div class="oculto"  :class="service.service + ' ' + setClass" v-for="treatment in treatments" :key="treatment.id" @click="redirection()">{{treatment.treatment}}</div> -->
-                  <div class="oculto"  :class="service.service + ' ' + setClass" v-for="treatment in treatments.filter(treatment => treatment.service == service.service)" :key="treatment.id" @click="redirection()">{{treatment.treatment}}</div>
+                  <div class="oculto"  :class="service.service + ' ' + setClass" v-for="treatment in treatments.filter(treatment => treatment.service == service.service)" :key="treatment.id" @click="redirection(treatment.treatment)">{{treatment.treatment}}</div>
               </transition-group>
           </div> 
       </section>
@@ -31,15 +31,15 @@ export default {
           services:[],
 
           setClass: "show-items-leave-active",
-          height: this.heroimage()
 
       }
   },
   
   methods:{
+
       display(service){
           let element = document.querySelectorAll('.'+service)
-          console.log(this.height)
+          // console.log(this.height)
           element.forEach((hiddenElement, index) => {
               setTimeout(() => {
                   hiddenElement.classList.toggle('show-items-leave-active');
@@ -57,9 +57,11 @@ export default {
           });
       },
 
-      redirection(){
+      redirection(value){
+        let treat = value
           this.$router.push({
               name: 'Agendas',
+              params:{treat}
           })
       },
 
@@ -105,11 +107,11 @@ export default {
 
           })
       },
-      heroimage() {
-          return {
-          backgroundimage: `url${require('@/assets/img/serv-Manicure.jpg')}`
-          };
-      }
+      // heroimage() {
+      //     return {
+      //     backgroundimage: `url${require('@/assets/img/serv-Manicure.jpg')}`
+      //     };
+      // }
 
   },
 

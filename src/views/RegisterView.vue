@@ -94,7 +94,7 @@ export default {
                   userService.postUser({params: this.user})
                   .then((response) =>{
                     console.log("Registrado")
-                    this.$router.push({name: "login"})
+                    this.$router.push({name: "Login"})
                   })
                   .catch((err) =>{
                     reject(err);

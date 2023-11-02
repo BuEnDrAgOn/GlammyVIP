@@ -48,6 +48,7 @@ export default {
       new Promise((response, reject) =>{
         userService.getUserByPhone({params: this.user})
         .then((response =>{
+          console.log(response.data)
           this.user.password == response.data[0].password ? 
           (localStorage.setItem(1, response.data[0].names),
            localStorage.setItem(2, response.data[0].id),

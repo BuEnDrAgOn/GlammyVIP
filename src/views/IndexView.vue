@@ -29,7 +29,7 @@
                     </a>
                 </div>
                 <div class="card">
-                    <a href="agendas.html">
+                    <a href="agendas">
                         <i class="fa fa-shopping-cart icon"></i>
                         <h2 class="category">Productos</h2>
                         <p class="description">

@@ -12,7 +12,7 @@
                 </div>
                 <div>
                     <label for="mothers lastname">Apellido Materno</label>
-                    <input type="text" name="lastname" v-bind:value="user.mothers_lastname" placeholder="Ingrese los datos" :disabled=true>
+                    <input type="text" name="lastname" v-bind:value="user.mothers_lastname" placeholder="Debe configurar su cuenta" :disabled=true>
                 </div>
                 <div class="agendar-cita">
                     <label for="">Seleccione el motivo</label>
@@ -24,8 +24,8 @@
                 <div class="agendar-cita">
                     <label for="">Seleccione tratamiento</label>
                     <label for="" class="error" v-if="(page.treatment!=null)">{{this.page.treatment}}</label>
-                    <select name="" id="" required @change="setTreatment($event)">
-                        <option value="" v-for="treatment in treatments" :key="treatment.id">{{treatment.treatment}}</option>
+                    <select name="" id="" required @change="show()" v-model="selected">
+                        <option v-for="treatment in treatments" :key="treatment.id">{{treatment.treatment}}</option>
                     </select>
                 </div>
                 <div class="agendar-cita">
@@ -40,7 +40,7 @@
                 </div>
                 <div class="agendar-cita coste">
                     <label for="">Coste</label>
-                    <input type="text" :disabled=true v-bind:value="price">
+                    <input type="text" :disabled=true v-bind:value="'$'+price">
                 </div>
                 <div class="agendar-cita submit">
                     <button @click="sendAppointment" :disabled="isLoading">Enviar</button>
@@ -90,9 +90,15 @@ export default {
             price: null,
             confirmed: false,
             isLoading: false,
+            selected: null
         }
     },
     methods:{
+        show(){
+            console.log(this.$route)
+            console.log(this.selected)
+        },
+
         handleService(){
             this.appointment.service == null ?
             (this.page.service = "Debe seleccionar un servicio",
@@ -232,6 +238,7 @@ export default {
         }) : null
         this.loadServices()
         this.appointment.id_user = localStorage.getItem(2)
+        this.show()
     }
 }
 </script>

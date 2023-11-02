@@ -15,7 +15,7 @@
                     <td v-if="admin">{{appointment.names + ' ' + appointment.fathers_lastname + ' ' + appointment.mothers_lastname}}</td>
                     <td>{{appointment.treatment}}</td>
                     <td>{{appointment.date}}</td>
-                    <td>{{appointment.payment}}</td>
+                    <td>${{appointment.payment}}.00</td>
                     <td v-if="admin">{{appointment.phone}}</td>
                     <td v-if="admin">{{appointment.direction}}</td>
                 </tr>
@@ -26,7 +26,7 @@
                 <th class="table-dark w-50">
                     Precio total
                 </th>
-                <th class="pagototal">{{ this.total }}</th>
+                <th class="pagototal">${{ this.total }}.00</th>
             </thead>
         </table>
     </section>
@@ -55,14 +55,15 @@ export default {
                     .then(response => {
                         let {data} = response
                         this.appointments = data
-                        this.appointments.map((appointment) => {
+                        this.appointments.map((appointment, i) => {
                             this.total = this.total + appointment.payment
-                            appointment.mothers_lastname == null || 'null' ?
-                            appointment.mothers_lastname = '' : null
-                            appointment.direction == null || 'null' ?
-                            appointment.direction = '[No tiene dirección]' : null
+                            console.log(this.appointments[i].mothers_lastname)
+                            appointment.mothers_lastname == 'null' ?
+                            this.appointments[i].mothers_lastname = '' : null
+                            console.log(this.appointments[i].mothers_lastname)
+                            appointment.direction == 'null' ?
+                            this.appointments[i].direction = '[No tiene dirección]' : null
                         })
-                        console.log(this.appointments)
                     })
                 }else{
                     appointmentService.getAppointmentByUserId({params: localStorage.getItem(2)})
