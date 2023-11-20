@@ -147,7 +147,6 @@ export default {
     border-radius: 0.3rem;
     width: 70%;
     padding: 3rem;
-    min-height: 47.7vh;
 }
 
 .modificar-container *{

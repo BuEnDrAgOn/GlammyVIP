@@ -180,7 +180,6 @@ export default {
   border-radius: 0.3rem;
   width: 70%;
   padding: 1rem;
-  min-height: 47.7vh;
 }
 .h2-service{
   background-color: #d11ab0ac ;
