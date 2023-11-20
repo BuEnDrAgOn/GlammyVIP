@@ -1,6 +1,6 @@
 version: '3'
 services:
   volume:
-    image: database-frontend
+    image: berefrontend
     ports:
-      - '3900:80'
+      - '8080:80'
