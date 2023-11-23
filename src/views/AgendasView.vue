@@ -24,7 +24,7 @@
                 <div class="agendar-cita">
                     <label for="">Seleccione tratamiento</label>
                     <label for="" class="error" v-if="(page.treatment!=null)">{{this.page.treatment}}</label>
-                    <select name="" id="" required @change="show()" v-model="selected">
+                    <select name="" id="" required @change="setTreatment($event)" v-model="selected">
                         <option v-for="treatment in treatments" :key="treatment.id">{{treatment.treatment}}</option>
                     </select>
                 </div>
@@ -95,8 +95,8 @@ export default {
     },
     methods:{
         show(){
-            console.log(this.$route)
-            console.log(this.selected)
+            // console.log(this.$route)
+            // console.log(this.appointment)
         },
 
         handleService(){
@@ -201,7 +201,7 @@ export default {
         setTreatment(e){
             this.appointment.treatment = e.target.options[e.target.options.selectedIndex].text;
             this.handleTreatment(e.target.options.selectedIndex)
-            console.log(this.appointment.id_service)
+            console.log('hola')
         },
 
         sendAppointment(){
@@ -210,6 +210,7 @@ export default {
             this.handleService()
             this.handleCalendar()
             this.handleHour()
+            console.log(this.appointment)
 
             this.confirmed == true ?
                 this.appointment.service != null ?
@@ -223,6 +224,7 @@ export default {
                     :null
                 :null
             :null
+            this.isLoading = false
         }
     },
 
