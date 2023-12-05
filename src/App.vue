@@ -154,7 +154,7 @@ ul{
 }
 
 *, *::after, *::before{
-    box-sizing: content-box !important;
+    box-sizing: border-box !important;
     font-weight: initial;
 }
 

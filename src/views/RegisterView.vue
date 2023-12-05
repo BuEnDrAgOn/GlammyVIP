@@ -121,7 +121,7 @@ label.error{
 }
 
 .form-register {
-    width: 400px;
+    width:30%;
     background: #ffffffc5;
     padding: 70px;
     padding-right: 100px;

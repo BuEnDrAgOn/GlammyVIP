@@ -14,7 +14,7 @@ export const serviceService = {
         return BereApi.get(`/services/` + params.id_service)
     },
     postService: async ({params}) => {
-        return BereApi.post(`/services`, params)
+        return BereApi.post(`/services/create`, params)
     },
     patchService: async ({params}) => {
         return BereApi.patch('/services/' + params.serviceID , params)
