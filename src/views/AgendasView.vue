@@ -218,7 +218,7 @@ export default {
                         this.appointment.appointment !=null && this.date.calendar > moment().format('YYYY-MM-DD')?
                             new Promise((response, reject) => {
                                 appointmentService.postAppointment({params: this.appointment})
-                                this.$router.push({name:"Citas", location: location.reload()})
+                                this.$router.push({name:"Citas"})
                             })
                         :null
                     :null
