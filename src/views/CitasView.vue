@@ -57,12 +57,15 @@ export default {
                         this.appointments = data
                         this.appointments.map((appointment, i) => {
                             this.total = this.total + appointment.payment
-                            console.log(this.appointments[i].mothers_lastname)
-                            appointment.mothers_lastname == 'null' ?
+                            appointment.mothers_lastname == null ?
                             this.appointments[i].mothers_lastname = '' : null
-                            console.log(this.appointments[i].mothers_lastname)
-                            appointment.direction == 'null' ?
+                            appointment.direction == null ?
                             this.appointments[i].direction = '[No tiene dirección]' : null
+                            
+                            console.log(appointment.phone.replace(/\d{2}/g, ''))
+
+                            appointment.phone = appointment.phone.replace(/(\d{2})(\d{4})(\d{4})/g, "$1-$2-$3")
+                            
                         })
                     })
                 }else{
