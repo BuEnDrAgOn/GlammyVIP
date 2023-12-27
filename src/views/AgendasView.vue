@@ -365,4 +365,10 @@ div input:read-only{
     color: #555;
 }
 
+@media (max-width: 1140px){
+    #agendar-container{
+        width: 100%;
+    }
+}
+
 </style>

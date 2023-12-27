@@ -55,16 +55,12 @@ export default {
                     .then(response => {
                         let {data} = response
                         this.appointments = data
-                        console.log(this.appointments)
                         this.appointments.map((appointment, i) => {
                             this.total = this.total + appointment.payment
                             appointment.mothers_lastname == null ?
                             this.appointments[i].mothers_lastname = '' : null
                             appointment.direction == null ?
                             this.appointments[i].direction = '[No tiene dirección]' : null
-                            
-                            console.log(appointment.phone.replace(/\d{2}/g, ''))
-
                             appointment.phone = appointment.phone.replace(/(\d{2})(\d{4})(\d{4})/g, "$1-$2-$3")
                             
                         })
@@ -74,7 +70,6 @@ export default {
                     .then(response => {
                         let {data} = response
                         this.appointments = data
-                        console.log(data)
                         this.appointments.map((appointment) => {this.total = this.total + appointment.payment})
                     })
                 }

@@ -4,7 +4,7 @@
         <section id="info">
             <!-- Inicio Banner -->
             <div id="banner" class="text-center">
-                <h1>BereNails | Estética</h1>
+                <h1>Glammy | Estética</h1>
                 <!-- Fin Banner -->
             </div>
             <!-- Inicio de Tarjetas -->
@@ -55,6 +55,8 @@ export default {
 
 .index-wrap{
     animation: displayList 1.2s;
+    justify-content: center;
+    width: 100%;
 }
 
 </style>

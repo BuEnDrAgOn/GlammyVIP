@@ -1,10 +1,12 @@
 <template>
   <div id="app" >
     <header id="header">
-        <div class="wrap" >
-            <div id="logo" @click="accountPage()">
-                <span class="gear">S</span>
-                <h3>Cuenta</h3>
+        <div class="wrap nav-wrapp" >
+            <div id="logo-wrapper">
+                <div id="logo" @click="accountPage()">
+                    <span class="gear">S</span>
+                    <h3>Cuenta</h3>
+                </div>
             </div>
              
             <nav id="menu">
@@ -43,8 +45,8 @@
 
                     <div id="location">
                         <h5>¿DONDE ESTAMOS?</h5>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3596.7455925478534!2d-100.1536837!3d25.6465678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8662c2314b751223%3A0xff5ba01e049e2adc!2sC.%20Monte%20Santo%20267%2C%20Residencial%20Monteverde%2C%2067257%20Ju%C3%A1rez%2C%20N.L.!5e0!3m2!1ses-419!2smx!4v1697414108658!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14884.331110317189!2d-101.7002448!3d21.1491038!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842bbf1e5133a8ff%3A0x7f7b8348099a7be!2sGlammy%20Nails!5e0!3m2!1ses-419!2smx!4v1703648980201!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
             </div>
         </footer>   
   </div>
@@ -159,6 +161,7 @@ ul{
 }
 
 *{
+    box-sizing: border-box;
     padding: 0px;
     margin: 0px;
     /* list-style-position: inside; */
@@ -200,8 +203,15 @@ body{
 }
 
 .wrap{
-    width: 1250px;
+    display: flex;
+    justify-content: space-between;
+    width: 65%;
     margin: 0px auto;
+}
+
+.nav-wrapp{
+    width: 100%;
+    justify-content: space-around;
 }
 
 .gear, .icon{
@@ -226,26 +236,37 @@ body{
     flex-grow: 0;
 }
 
+#logo-wrapper{
+    flex-grow: 1;
+    display: flex;
+    width: 23%;
+    padding-top: 8px;
+    padding-left: 20px;
+    max-width: 220px;
+}
+
 #logo{
     display: flex;
-    float: left;
-    width: 200px;
-    height: 53px;
+    flex-grow: 1;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    height: calc(100% - 8px);
     background-color: #db57c3;
     text-align: center;
-    margin-top: 8px;
-    margin-left: 20px;
+    /* margin-top: 8px;
+    margin-left: 20px; */
     letter-spacing: 1px;
     cursor: pointer;
     overflow: hidden;
     transition: all 0.3s;
 }
 #logo h3{
+    flex-grow: 1;
     display: flex;
-    margin-top: .30rem;
+    padding: .30rem;
     padding-left: 1rem;
     /* margin-right: 65px; */
-    font-size: 40px;
+    font-size: 2.5rem;
     /* transition: all .3s; */
 }
 
@@ -256,11 +277,9 @@ body{
 }
 
 #logo .gear{
-    display: flex;
-    float: left;
+    flex-grow: 1;
     font-size: 1.875rem;
     padding-top: 0.40rem;
-    margin-left: 1.625rem;
     animation-name: rotate-gear;
     animation-duration: 2s;
     animation-iteration-count: infinite;
@@ -407,16 +426,26 @@ body{
     flex-flow: row wrap;
     justify-content: center;
 }
+
+#cards{
+    display: flex;
+    flex-flow: row wrap;
+    width: 80%;
+    justify-content: center;
+    gap: 22px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
 .card{
     float: left;
-    width: 205px;
-    height: 305px !important;
+    width: 30%;
+    flex-basis: 205px;
+    flex-grow: 1;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 2px #ddd;
     background-color: white;
     overflow: hidden;
-    margin: 22px;
-    margin-top: 40px;
     cursor: pointer;
     transition: all 300ms;
 }
@@ -424,11 +453,6 @@ body{
 
 .card:hover{
     background-color: black;
-}
-
-
-.card:last-child{
-    margin-right: 0px;
 }
 
 .card a{
@@ -850,7 +874,7 @@ aside h3:first-child{
 
 #footer{
     width: 100%;
-    height: 450px;
+    min-height: 450px;
     background-color: black;
     color: white;
     overflow: hidden;
@@ -984,4 +1008,18 @@ aside h3:first-child{
 }
 
 
+@media (max-width: 1140px){
+    #footer .wrap{
+        flex-flow: column wrap;
+        align-content: center;
+    }
+    #footer > .wrap > div{
+        width: 100%;
+        height: auto;
+    }
+
+    #footer .wrap > .menu-footer{
+        margin-bottom: 0;
+    }
+}
 </style>

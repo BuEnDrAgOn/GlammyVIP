@@ -1,37 +1,35 @@
 <template>
-<div>
-            <a href="#" class="back-to-top"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
-            <!-- Inicio de Cabecera -->
-            <!-- Fin de cabecera -->
+  <div>
+      <a href="#" class="back-to-top"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+      <!-- Inicio de Cabecera -->
+      <!-- Fin de cabecera -->
 
-            <section class="wrap">
-                <section id="info">
-                    <!-- Inicio Banner -->
-                    <div id="banner" class="text-center">
-                        <h1>BereNails | Estética</h1>
-                        <!-- Fin Banner -->
-                    </div>
-                </section>
-            </section>
-            <div class="wrap-login">
-                <section class="form-register">
-                    <h4>Registrarme</h4>
-                        <input class="controls" v-model="user.names" type="text" name="nombres" id="name" placeholder="Ingrese su Nombre" autofocus>
-                        <input class="controls" v-model="user.fathers_lastname" type="text" name="apellidos" id="fathers_lastname" placeholder="Ingrese su Apellido">
-                        
-                        <label class="error" for="" v-if="(page.phone!=null)">{{this.page.phone}}</label>
-                        <input class="controls" v-model="user.phone" type="number" @change="handlePhone" name="telefono" id="phone" placeholder="Ingrese su Teléfono" maxlength="10">
-                        
-                        <label class="error" for="" v-if="(page.message!=null)">{{this.page.message}}</label>
-                        <input class="controls" v-model="user.password" @change="handlePassword" type="password" name="contraseña" id="password" placeholder="Ingrese su Contraseña">
-                        
-                        <label class="error" for="" v-if="(page.confirmPassword != null)">{{this.page.confirmPassword}}</label>
-                        <input class="controls" v-model="page.cPassword" type="password" @change="confirmPassword" name="contraseña" id="confirmPassword" placeholder="Repita su Contraseña">
-                        
-                        <input class="botons" @click="sendRegisterUser" type="submit" value="Registrar">
-                        <p>¿Ya tienes cuenta?  <a href="login">Inicia Sesión</a></p>
-                </section>
-            </div>
+      <section class="wrap">
+              <!-- Inicio Banner -->
+              <div id="banner" class="text-center">
+                  <h1>Glammy | Estética</h1>
+                  <!-- Fin Banner -->
+              </div>
+      </section>
+      <div class="wrap-login">
+          <section class="form-register">
+              <h4>Registrarme</h4>
+                  <input class="controls" v-model="user.names" type="text" name="nombres" id="name" placeholder="Ingrese su Nombre" autofocus>
+                  <input class="controls" v-model="user.fathers_lastname" type="text" name="apellidos" id="fathers_lastname" placeholder="Ingrese su Apellido">
+                  
+                  <label class="error" for="" v-if="(page.phone!=null)">{{this.page.phone}}</label>
+                  <input class="controls" v-model="user.phone" type="number" @change="handlePhone" name="telefono" id="phone" placeholder="Ingrese su Teléfono" maxlength="10">
+                  
+                  <label class="error" for="" v-if="(page.message!=null)">{{this.page.message}}</label>
+                  <input class="controls" v-model="user.password" @change="handlePassword" type="password" name="contraseña" id="password" placeholder="Ingrese su Contraseña">
+                  
+                  <label class="error" for="" v-if="(page.confirmPassword != null)">{{this.page.confirmPassword}}</label>
+                  <input class="controls" v-model="page.cPassword" type="password" @change="confirmPassword" name="contraseña" id="confirmPassword" placeholder="Repita su Contraseña">
+                  
+                  <input class="botons" @click="sendRegisterUser" type="submit" value="Registrar">
+                  <p>¿Ya tienes cuenta?  <a href="login">Inicia Sesión</a></p>
+          </section>
+        </div>
     </div>
 </template>
 
@@ -124,7 +122,6 @@ label.error{
     width:30%;
     background: #ffffffc5;
     padding: 70px;
-    padding-right: 100px;
     margin-top: 10px;
     margin-bottom: 3rem;
     border-radius: 10px;
@@ -139,7 +136,6 @@ label.error{
     margin-bottom: 20px;
     text-align: center; 
     padding: 0.3rem;
-    padding-left: 20px;
     width: 100%;
     color: white;
     border-radius: 0.5rem;
@@ -205,7 +201,26 @@ body{
     background-image: url(@/assets/img/pattern.png);
 }
 
+@media (max-width: 1200px){
+  .form-register{
+    width: 80%;
+  }
+  section.wrap{
+    width: 100%;
+  }
+}
 
+@media (max-width: 450px){
+  .form-register{
+    padding: 40px;
+  }
+  .form-register h4{
+    font-size: 1.8rem;
+  }
+  #banner h1{
+    font-size: 3rem;
+  }
+}
 
 
 /* input:valid + span::after{

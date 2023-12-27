@@ -1,15 +1,13 @@
 <template>
   <div>
-     <section class="wrap">
-        <section id="info">
-            <!-- Inicio Banner -->
-            <div id="banner" class="text-center">
-                <h1>BereNails | Estética</h1>
-                <!-- Fin Banner -->
-            </div>
-        </section>
-    </section>
-    <div class="wrap-login">
+      <section class="wrap">
+        <!-- Inicio Banner -->
+        <div id="banner" class="text-center">
+            <h1>Glammy | Estética</h1>
+            <!-- Fin Banner -->
+        </div>
+      </section>
+      <div class="wrap-login">
         <section class="form-register">
             <h4>Inicio de Sesión</h4>
             <label class="error" v-if="(page.message!=null)">{{this.page.message}}</label>
@@ -18,7 +16,7 @@
             <input class="controls" v-model="user.password" type="password" name="contraseña" id="contraseña" placeholder="Ingrese su Contraseña" @keydown.enter="loginUser">
             <input class="botons" type="submit" value="Iniciar Sesión" @click="loginUser">
             <p>¿No tienes Cuenta? <a href="register">¡¡Registrate!!</a></p>
-          </section>
+        </section>
     </div>
   </div>
 </template>
