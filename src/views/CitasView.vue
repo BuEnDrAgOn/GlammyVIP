@@ -55,6 +55,7 @@ export default {
                     .then(response => {
                         let {data} = response
                         this.appointments = data
+                        console.log(this.appointments)
                         this.appointments.map((appointment, i) => {
                             this.total = this.total + appointment.payment
                             appointment.mothers_lastname == null ?
